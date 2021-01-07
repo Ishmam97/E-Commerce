@@ -1,11 +1,12 @@
 import './App.css';
 import Card from './Components/Card'
-import Navbar from './Components/Navbar';
+import Navigation from './Components/Navigation';
+
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <Navigation/>
       <h1>Hello from app</h1>
       <Card/>
     </div>
