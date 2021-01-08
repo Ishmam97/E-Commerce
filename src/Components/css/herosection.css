@@ -1,0 +1,9 @@
+.hero-container{
+    border: 2px solid black;
+    height: 42rem;
+    margin: 5px auto;
+    
+}
+.hero-container img{
+    height: 42rem;
+}

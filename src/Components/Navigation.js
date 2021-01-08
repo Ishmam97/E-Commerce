@@ -9,7 +9,7 @@ import './css/navbar.css';
 
 function Navigation() {
   return (
-    <Navbar bg="dark" expand="lg" >
+    <Navbar expand="lg" variant="dark" id="navbar" >
     <Navbar.Brand href="#home" className="text-danger">E-Commerce</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
@@ -19,18 +19,18 @@ function Navigation() {
         <NavDropdown title={
         <span className="text-white my-auto">Categories</span>
     } id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1" className="text-white bg-dark">Food</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2" className="text-white bg-dark">
+          <NavDropdown.Item href="#action/3.1">Food</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">
             water
           </NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3" className="text-white bg-dark">groceries</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">groceries</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4" className="text-white bg-dark">
+          <NavDropdown.Item href="#action/3.4">
             clothing
           </NavDropdown.Item>
         </NavDropdown>
 
-        <Nav.Link href="#link" className="text-info">Cart</Nav.Link>
+        <Nav.Link href="#link" className="text-white">Cart</Nav.Link>
       </Nav>
       <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
