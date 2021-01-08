@@ -1,8 +1,6 @@
 import React from 'react';
-import { OverlayTrigger } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
-import {useSpring, animated} from 'react-spring'
 
 function addToCart() {
   return(

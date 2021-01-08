@@ -10,7 +10,7 @@ import './css/navbar.css';
 function Navigation() {
   return (
     <Navbar expand="lg" variant="dark" id="navbar" >
-    <Navbar.Brand href="#home" className="text-danger">E-Commerce</Navbar.Brand>
+    <Navbar.Brand href="#" className="text-danger">E-Commerce</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto " id="navigation">
