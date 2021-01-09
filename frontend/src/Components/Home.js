@@ -1,9 +1,9 @@
 import react from 'react';
-
+import Item from './Item'
 const Home = ()=>{
     
     return(
-        <h1>Hello from home</h1>
+        <Item/>
     )
 }
 
