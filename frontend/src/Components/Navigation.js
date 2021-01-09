@@ -1,43 +1,60 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Nav from "react-bootstrap/Nav";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
 import './css/navbar.css';
+import {Link} from 'react-router-dom'
 
 function Navigation() {
   return (
-    <Navbar expand="lg" variant="dark" id="navbar" >
-    <Navbar.Brand href="#" className="text-danger">E-Commerce</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto " id="navigation">
-        <Nav.Link href="#home" className="text-white">Home</Nav.Link>
-        
-        <NavDropdown title={
-        <span className="text-white my-auto">Categories</span>
-    } id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Food</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">
-            water
-          </NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">groceries</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">
-            clothing
-          </NavDropdown.Item>
-        </NavDropdown>
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark " id="navbar">
+        <Link className="navbar-brand mx-5 text-danger" to="/">Navbar</Link>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-        <Nav.Link href="#link" className="text-white">Cart</Nav.Link>
-      </Nav>
-      <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-success">Search</Button>
-      </Form>
-    </Navbar.Collapse>
-  </Navbar>
+        <div className="collapse navbar-collapse navlist" id="navbarSupportedContent">
+          <ul className="navbar-nav w-75 mr-auto ml-auto">
+            <li className="nav-item dropdown mx-5">
+              <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="#">cat1</Link>
+                <Link className="dropdown-item" to="#">cat2</Link>
+                {/* <div className="dropdown-divider"></div> */}
+                <Link className="dropdown-item" to="#">cat3</Link>
+              </div>
+            </li>
+            <li className="nav-item mx-5 search">
+              <form className="form-inline my-2 my-lg-0">
+                <input className="form-control mr-sm-3 w-75 searchinput" type="search" placeholder="Search" aria-label="Search"/>
+                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+
+
+            <li className="nav-item ml-auto">
+              <Link className="nav-link active" to="/featured">Featured <span className="sr-only">(current)</span></Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/cart">Cart</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">About us</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/signin">Sign in</Link>              
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/signup">Sign up</Link>
+            </li>
+
+
+
+          </ul>
+
+        </div>
+      </nav>
+    </div>
   );
 }
 
