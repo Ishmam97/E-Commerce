@@ -1,4 +1,4 @@
-import React , { Component } from 'react';
+import React , { Component , useState } from 'react';
 import {Link} from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group';
 
@@ -6,79 +6,109 @@ import './css/signin.css'
 import toggleForm from './js/signin';
 
 
-class Signin extends Component{
-    state = {
+const Signin=()=>{
+    let state = {
         signin: true,
         signup: false,
 
     }
-    showSignup= () =>{
-        this.setState(prevState=>({
+    let showSignup= () =>{
+        state = {
             signin: false,
             signup: true,
-        }))
+        }
     }
-    showSignin= () =>{
-        this.setState(prevState=>({
+    let showSignin= () =>{
+        state={
             signin: true,
             signup: false,
-        }))
+        }
     }
+    
+    const [formData , setFormData] = useState({
+        uname:'',
+        email:''        ,
+        pass:'',
+        pass2:'',
+        successMsg:false,
+        errorMsg:false,
+        Loading:false,
+    })
+    const {uname , email , pass , pass2 , successMsg , errorMsg , Loading} = formData;
 
-    render() {
-        return(
-            <section className="section">
-                <CSSTransition
-                in={this.state.signin}
-                timeout={400}
-                classNames="wrapper-transition"
-                unmountOnExit
-                appear
-                onEntered={this.showSignup}
-                onExit={this.showSignin}
-                >
-                    <div className="wrapper">
-                        <div className="user singinBx">
-                            <div className="imgBx" >
-                                <img src="https://picsum.photos/seed/dicsum/400/500" alt="random pic"/>                    
-                            </div>
-                            <div className="formBx">
-                                <form>
-                                    <h2>Sign In</h2>
-                                    <input className="input" type="text" name="uname" placeholder="Username"/>
-                                    <input className="input" type="password" name="pass" placeholder="password"/>
-                                    <input className="input"  type="submit" value="Login"/>
-                                    <p className="signup">Don't have an account? <Link to='#' onClick={(event)=>{
-                                        toggleForm();
-                                        this.showSignup();
-                                    }} id="sup">Sign Up.</Link></p>
-                                </form>
-                            </div>
+    const handleChange=(evt)=>{
+        setFormData({
+            ...formData,
+            [evt.target.name]:evt.target.value,
+        })
+    }
+    const signinSubmit = (evt)=>{
+        evt.preventDefault();
+        console.log(formData)
+        console.log("from signin")
+    }
+    const signupSubmit = (evt)=>{
+        evt.preventDefault();
+        console.log("from signup")
+        console.log(formData)
+    }
+    
+
+    return(
+        <section className="section">
+            <CSSTransition
+            in={state.signin}
+            timeout={400}
+            classNames="wrapper-transition"
+            unmountOnExit
+            appear
+            onEntered={showSignup}
+            onExit={showSignin}
+            >
+                <div className="wrapper">
+                    <div className="user singinBx">
+                        <div className="imgBx" >
+                            <img src="https://picsum.photos/seed/dicsum/400/500" alt="random pic"/>                    
                         </div>
-                        <div className="user singupBx">                    
-                            <div className="formBx">
-                                <form>
-                                    <h2>Create an account</h2>
-                                    <input className="input" type="text" name="uname" placeholder="Username"/>
-                                    <input className="input" type="email" name="email" placeholder="Email Address"/>
-                                    <input className="input" type="password" name="pass" placeholder="Create password"/>
-                                    <input className="input" type="password" name="pass" placeholder="Confirm password"/>
-                                    <input className="input"  type="submit" value="Sign up"/>
-                                    <p className="signup">Already have an account? <Link to='#' onClick={(event)=>{
-                                        toggleForm();
-                                        this.showSignin();
-                                    }} id="sin">Sign In.</Link></p>
-                                </form>
-                            </div>
-                            <div className="imgBx" >
-                                <img src="https://picsum.photos/seed/picsdum/400/500" alt="random pic"/>                    
-                            </div>
+                        <div className="formBx">
+                            <form onSubmit={signinSubmit}>
+                                <h2>Sign In</h2>
+                                <input className="input" type="text" name="uname" value={uname} placeholder="Username" onChange={handleChange}/>
+                                <input className="input" type="password" name="pass" value={pass} placeholder="password" onChange={handleChange}/>
+                                <input className="input"  type="submit" value="Login"/>
+                                <p className="signup">Don't have an account? <Link to='#' onClick={(event)=>{
+                                    toggleForm();
+                                    
+                                }} id="sup">Sign Up.</Link></p>
+                            </form>
                         </div>
                     </div>
-                </CSSTransition>
-            </section>
-        );
-    }
+                    <div className="user singupBx">                    
+                        <div className="formBx">
+                            <form onSubmit={signupSubmit}>
+                                <h2>Create an account</h2>
+                                <input className="input" type="text" name="uname" value={uname} placeholder="Username" onChange={handleChange}/>
+                                <input className="input" type="email" name="email" value={email} placeholder="Email Address" onChange={handleChange}/>
+                                <input className="input" type="password" name="pass" value={pass} placeholder="Create password" onChange={handleChange}/>
+                                <input className="input" type="password" name="pass2" value={pass2} placeholder="Confirm password" onChange={handleChange}/>
+                                <input className="input"  type="submit" value="Sign up"/>
+                                <p className="signup">Already have an account? <Link to='#' onClick={(event)=>{
+                                    toggleForm();
+                                    
+                                }} id="sin">Sign In.</Link></p>
+                            </form>
+                        </div>
+                        <div className="imgBx" >
+                            <img src="https://picsum.photos/seed/picsdum/400/500" alt="random pic"/>                    
+                        </div>
+                    </div>
+                    
+                </div>
+            </CSSTransition>
+            
+        </section>
+    );
+    
 }
 
 export default Signin;
