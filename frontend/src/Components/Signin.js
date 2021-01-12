@@ -1,12 +1,15 @@
-import React , { Component , useState } from 'react';
+import React , { useState } from 'react';
 import {Link} from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group';
+import isEmail from 'validator/lib/isEmail'
+import isEmpty from 'validator/lib/isEmpty'
+import equals from 'validator/lib/equals'
 
 import './css/signin.css'
 import toggleForm from './js/signin';
 
 
-const Signin=()=>{
+const SigninForm=()=>{
     let state = {
         signin: true,
         signup: false,
@@ -27,7 +30,7 @@ const Signin=()=>{
     
     const [formData , setFormData] = useState({
         uname:'',
-        email:''        ,
+        email:'',
         pass:'',
         pass2:'',
         successMsg:false,
@@ -44,18 +47,48 @@ const Signin=()=>{
     }
     const signinSubmit = (evt)=>{
         evt.preventDefault();
+
+
         console.log(formData)
         console.log("from signin")
     }
     const signupSubmit = (evt)=>{
         evt.preventDefault();
-        console.log("from signup")
+
+        //client side form validation
+        
+        if (isEmpty(uname) || isEmpty(email) || isEmpty(pass) || isEmpty(pass2) ){
+            setFormData({
+                ...formData,errorMsg:'All fields must be filled', successMsg:false
+            })
+        }else if(!isEmail(email)){
+            setFormData({
+                ...formData,errorMsg:'Invalid Email', successMsg:false
+            })
+        }else if(pass.length < 6){
+            
+            setFormData({
+                ...formData , errorMsg:'Password must be 6 digits minimum', successMsg:false
+            })
+        }else if(!equals(pass , pass2)){
+            setFormData({
+                ...formData , errorMsg:'Passwords dont match!'  , successMsg:false
+            })
+        }else{
+            //success
+            setFormData({
+                ...formData , successMsg:'Successful validation!' , errorMsg:false
+            })
+        }
         console.log(formData)
     }
     
 
     return(
+        <div>
+        {JSON.stringify(formData)}
         <section className="section">
+            
             <CSSTransition
             in={state.signin}
             timeout={400}
@@ -77,15 +110,14 @@ const Signin=()=>{
                                 <input className="input" type="password" name="pass" value={pass} placeholder="password" onChange={handleChange}/>
                                 <input className="input"  type="submit" value="Login"/>
                                 <p className="signup">Don't have an account? <Link to='#' onClick={(event)=>{
-                                    toggleForm();
-                                    
+                                    toggleForm();                                    
                                 }} id="sup">Sign Up.</Link></p>
                             </form>
                         </div>
                     </div>
                     <div className="user singupBx">                    
                         <div className="formBx">
-                            <form onSubmit={signupSubmit}>
+                            <form onSubmit={signupSubmit} >
                                 <h2>Create an account</h2>
                                 <input className="input" type="text" name="uname" value={uname} placeholder="Username" onChange={handleChange}/>
                                 <input className="input" type="email" name="email" value={email} placeholder="Email Address" onChange={handleChange}/>
@@ -93,8 +125,7 @@ const Signin=()=>{
                                 <input className="input" type="password" name="pass2" value={pass2} placeholder="Confirm password" onChange={handleChange}/>
                                 <input className="input"  type="submit" value="Sign up"/>
                                 <p className="signup">Already have an account? <Link to='#' onClick={(event)=>{
-                                    toggleForm();
-                                    
+                                    toggleForm();                                    
                                 }} id="sin">Sign In.</Link></p>
                             </form>
                         </div>
@@ -107,8 +138,16 @@ const Signin=()=>{
             </CSSTransition>
             
         </section>
+        </div>
     );
     
+}
+const Signin = () =>{
+    return(
+        <div>
+            {SigninForm()}
+        </div>
+    )
 }
 
 export default Signin;
