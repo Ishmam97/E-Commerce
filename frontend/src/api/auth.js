@@ -6,9 +6,9 @@ const signUp = async (data)=>{
             'Content-Type':'application/json'
         }        
     }
-    const response = await axios.post('/api/auth/signup',data,config);
+    const response = await axios.post('/api/auth/signup', data , config);
     
     return response;
 };
 
-export default signUp
+export default signUp;
