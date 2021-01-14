@@ -95,8 +95,8 @@ const Signin = () =>{
         }else{
             //success
             
-            const{ uname , emai , pass} = formData
-            const data = { uname , emai , pass}
+            const{ uname , email , pass} = formData
+            const data = { uname , email , pass}
             setFormData({
                 ...formData  , errorMsg:false , Loading:true,
             })

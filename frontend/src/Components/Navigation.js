@@ -14,7 +14,7 @@ function Navigation() {
         <div className="collapse navbar-collapse navlist" id="navbarSupportedContent">
           <ul className="navbar-nav w-75 mr-auto ml-auto">
             <li className="nav-item dropdown mx-5">
-              <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">

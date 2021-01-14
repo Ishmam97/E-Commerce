@@ -59,20 +59,20 @@ function Item() {
     <div className="item">
       <h1> Most Popular </h1>
       <Line color='grey' />
-      <div class= "card">
-        <div class="imgbox">
+      <div className= "card">
+        <div className="imgbox">
           <img src="../img/ps5.png" alt="product"></img>
         </div>
-        <div class="cardBody">
+        <div className="cardBody">
           <h3>PlayStation 5</h3>
-          <h2 class="price">$499.99</h2>
+          <h2 className="price">$499.99</h2>
         
-          <div class="counterBlock">
+          <div className="counterBlock">
             <button id="minus"> - </button>
             <p id="number"> 0 </p>
             <button id="plus"> + </button>
           </div>
-          <button class="cart" onClick={(e) => {addToCart(e);}}> Add to Cart</button>
+          <button className="cart" onClick={(e) => {addToCart(e);}}> Add to Cart</button>
           
           <Link className="heart" to="#" onClick={(e)=>{likedProduct(e);}}> <img src="../img/unheart.png" alt="like button" height="32px" width="32px"></img></Link>
         </div>
