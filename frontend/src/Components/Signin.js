@@ -9,6 +9,7 @@ import showMsg from './helpers/Message'
 import './css/signin.css'
 import toggleForm from './js/signin';
 import showLoading from './helpers/Loading'
+import signUp from '../api/auth'
 
 const Signin = () =>{
     let state = {
@@ -30,13 +31,13 @@ const Signin = () =>{
     }
     
     const [formData , setFormData] = useState({
-        uname:'',
-        email:'',
-        pass:'',
-        pass2:'',
+        uname:'ishmeme',
+        email:'ishmeme@me.com',
+        pass:'abc123',
+        pass2:'abc123',
         successMsg:false,
         errorMsg:false,
-        Loading:true,
+        Loading:false,
     })
     const {uname , email , pass , pass2 , successMsg , errorMsg , Loading} = formData;
 
@@ -93,9 +94,32 @@ const Signin = () =>{
             })
         }else{
             //success
+            
+            const{ uname , emai , pass} = formData
+            const data = { uname , emai , pass}
             setFormData({
-                ...formData , successMsg:'Successful validation!' , errorMsg:false
+                ...formData  , errorMsg:false , Loading:true,
             })
+            signUp(data).then(response =>{
+                console.log('success' , response)
+                setFormData({
+                    uname:'',
+                    email:'',
+                    pass:'',
+                    pass2:'',
+                    successMsg:response.data.successMessage,
+                    errorMsg:false,
+                    Loading:false,
+                })
+            }).catch(err=>{
+                console.log('Error in axios' , err)
+                setFormData({
+                    ...formData,
+                    errorMsg:'Error occured',
+                    Loading:false,
+                })
+            })
+            
         }
         console.log(formData)
     }

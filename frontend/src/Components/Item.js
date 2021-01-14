@@ -25,7 +25,7 @@ function Item() {
   function addToCart(e) {
     console.log("Product added.");
     
-    if(cartState == 0) {
+    if(cartState === 0) {
       setCartState(cartState => 1)
       
     }
@@ -38,7 +38,7 @@ function Item() {
   }
   
   function likedProduct(e){
-    if(state == 0) {
+    if(state === 0) {
       setState(state => 1)
       console.log("Product added to wishlist.");
       e.target.src = "../img/heart.png"
@@ -61,7 +61,7 @@ function Item() {
       <Line color='grey' />
       <div class= "card">
         <div class="imgbox">
-          <img src="../img/ps5.png"></img>
+          <img src="../img/ps5.png" alt="product"></img>
         </div>
         <div class="cardBody">
           <h3>PlayStation 5</h3>
@@ -74,7 +74,7 @@ function Item() {
           </div>
           <button class="cart" onClick={(e) => {addToCart(e);}}> Add to Cart</button>
           
-          <Link className="heart" to="#" onClick={(e)=>{likedProduct(e);}}> <img src="../img/unheart.png" height="32px" width="32px"></img></Link>
+          <Link className="heart" to="#" onClick={(e)=>{likedProduct(e);}}> <img src="../img/unheart.png" alt="like button" height="32px" width="32px"></img></Link>
         </div>
       </div>
       <Line color='grey' />
