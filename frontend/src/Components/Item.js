@@ -56,9 +56,7 @@ function Item() {
 
  
   return (
-    <div className="item">
-      <h1> Most Popular </h1>
-      <Line color='grey' />
+    
       <div className= "card">
         <div className="imgbox">
           <img src="../img/ps5.png" alt="product"></img>
@@ -77,10 +75,7 @@ function Item() {
           <Link className="heart" to="#" onClick={(e)=>{likedProduct(e);}}> <img src="../img/unheart.png" alt="like button" height="32px" width="32px"></img></Link>
         </div>
       </div>
-      <Line color='grey' />
       
-    </div>
-    
   );
 }
 
