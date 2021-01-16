@@ -101,13 +101,13 @@ const Signin = () =>{
                 ...formData  , errorMsg:false , Loading:true,
             })
             signUp(data).then(response =>{
-                console.log('success' , response)
+                console.log('Axios signup success' , response)
                 setFormData({
                     uname:'',
                     email:'',
                     pass:'',
                     pass2:'',
-                    successMsg:response.data.successMessage,
+                    successMsg:response.data.successMsg,
                     errorMsg:false,
                     Loading:false,
                 })
@@ -115,7 +115,7 @@ const Signin = () =>{
                 console.log('Error in axios' , err)
                 setFormData({
                     ...formData,
-                    errorMsg:'Error occured',
+                    errorMsg: err.response.data.errorMsg,
                     Loading:false,
                 })
             })
