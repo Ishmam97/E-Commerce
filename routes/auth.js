@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
-router.post('/signup' , (req , res)=>{
-    console.log('inside signup handler backend')
-})
+const {signupValidator , signupValidatorResults} = require('../middlewares/validator')
+router.post('/signup' , signupValidator , signupValidatorResults)
 
 module.exports = router
