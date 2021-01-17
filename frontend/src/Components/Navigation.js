@@ -30,8 +30,6 @@ function Navigation() {
                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </li>
-
-
             <li className="nav-item ml-auto">
               <Link className="nav-link active" to="/featured">Featured <span className="sr-only">(current)</span></Link>
             </li>
@@ -47,9 +45,6 @@ function Navigation() {
             <li className="nav-item">
               <Link className="nav-link" to="/signup">Sign up</Link>
             </li>
-
-
-
           </ul>
 
         </div>

@@ -9,7 +9,7 @@ import showMsg from './helpers/Message'
 import './css/signin.css'
 import toggleForm from './js/signin';
 import showLoading from './helpers/Loading'
-import signUp from '../api/auth'
+import {signUp , signIn} from '../api/auth'
 
 const Signin = () =>{
     let state = {
@@ -38,6 +38,7 @@ const Signin = () =>{
         successMsg:false,
         errorMsg:false,
         Loading:false,
+        redtodash:false,
     })
     const {uname , email , pass , pass2 , successMsg , errorMsg , Loading} = formData;
 
@@ -63,8 +64,11 @@ const Signin = () =>{
         }else{
             //success
             setFormData({
-                ...formData , successMsg:'Successful validation!' , errorMsg:false
+                ...formData  , errorMsg:false , Loading:true,
             })
+            const{ email , pass} = formData
+            const data = { email , pass}
+            signIn(data)
         }
 
         console.log(formData)
@@ -144,7 +148,7 @@ const Signin = () =>{
                                 <div className="formBx">
                                     <form onSubmit={signinSubmit} noValidate>
                                         <h2>Sign In</h2>
-                                        <input className="input" type="text" name="uname" value={uname} placeholder="Username" onChange={handleChange}/>
+                                        <input className="input" type="email" name="email" value={email} placeholder="Email Address" onChange={handleChange}/>
                                         <input className="input" type="password" name="pass" value={pass} placeholder="password" onChange={handleChange}/>
                                         <input className="input"  type="submit" value="Login"/>
                                         <p className="signup">Don't have an account? <Link to='#' onClick={(event)=>{

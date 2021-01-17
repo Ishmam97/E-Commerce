@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const signUp = async (data)=>{
+export const signUp = async (data)=>{
     const config = {
         headers:{
             'Content-Type':'application/json'
@@ -10,5 +10,14 @@ const signUp = async (data)=>{
     
     return response;
 };
+export const signIn = async (data)=>{
+    const config = {
+        headers:{
+            'Content-Type':'application/json'
+        }        
+    }
+    const response = await axios.post('/api/auth/signin', data , config);
+    
+    return response;
+};
 
-export default signUp;

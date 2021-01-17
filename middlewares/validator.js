@@ -5,8 +5,12 @@ exports.signupValidator = [
     check('email').isEmail().normalizeEmail().withMessage('Invalid email'),
     check('pass').isLength({min:6}).withMessage('Password must be 6 chars or more backend')
 ];
+exports.signinValidator = [
+    check('email').isEmail().normalizeEmail().withMessage('Invalid email'),
+    check('pass').isLength({min:6}).withMessage('Password must be 6 chars or more backend')
+];
 
-exports.signupValidatorResults = (req , res , next)=>{
+exports.ValidatorResults = (req , res , next)=>{
     // console.log("reached here")
     const result = validationResult(req)
     const hasErrors = !result.isEmpty()
