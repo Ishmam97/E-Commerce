@@ -3,15 +3,6 @@ import "./css/item.css";
 import {Link} from 'react-router-dom'
 function Item() {
   
-  const Line = ({ color }) => (
-    <hr 
-      style = {{
-        color: color,
-        backgroundColor: color,
-        height: 0.2
-      }}
-    />
-  );
   
   const [state, setState] = useState(() => {
     // Read from user's wishlist to check if this item was added earlier

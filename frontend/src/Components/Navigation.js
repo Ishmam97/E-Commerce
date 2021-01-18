@@ -1,7 +1,7 @@
-import React from "react";
+import React , {Fragment} from "react";
 import './css/navbar.css';
-import {Link} from 'react-router-dom'
-
+import {Link , withRouter} from 'react-router-dom'
+import {isAuthenticated} from './helpers/auth'
 function Navigation() {
   return (
     <div>
@@ -39,18 +39,37 @@ function Navigation() {
             <li className="nav-item">
               <Link className="nav-link" to="/about">About us</Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/signin">Sign in</Link>              
-            </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/signup">Sign up</Link>
-            </li> */}
+            {!isAuthenticated() && (
+              <Fragment>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signin">Sign in</Link>              
+                </li>
+              </Fragment>
+            )}
+            {isAuthenticated() && isAuthenticated().role===0 &&(
+              <Fragment>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/user/dash">Dashboard</Link>              
+                </li>
+              </Fragment>
+            )}
+            {isAuthenticated() && isAuthenticated().role===1 &&(
+              <Fragment>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/admin/dash">Dashboard</Link>              
+                </li>
+              </Fragment>
+            )}
           </ul>
-
+          {isAuthenticated() &&(
+              <Fragment>
+                <h5 className="text-white text-center">Hello {isAuthenticated().uName}</h5>
+              </Fragment>
+            )}
         </div>
       </nav>
     </div>
   );
 }
 
-export default Navigation;
+export default withRouter(Navigation);
