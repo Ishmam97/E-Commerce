@@ -1,8 +1,14 @@
 import React , {Fragment} from "react";
 import './css/navbar.css';
 import {Link , withRouter} from 'react-router-dom'
-import {isAuthenticated} from './helpers/auth'
-function Navigation() {
+import {isAuthenticated , logout} from './helpers/auth'
+function Navigation({history}) {
+  const handleLogout = evt =>{
+    logout(()=>{
+      console.log("Logged OUT")
+      history.push('/signin');
+    })
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark " id="navbar">
@@ -12,8 +18,8 @@ function Navigation() {
         </button>
 
         <div className="collapse navbar-collapse navlist" id="navbarSupportedContent">
-          <ul className="navbar-nav w-75 mr-auto ml-auto">
-            <li className="nav-item dropdown mx-5">
+          <ul className="navbar-nav w-100 mr-auto text-center">
+            <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
               </Link>
@@ -24,13 +30,13 @@ function Navigation() {
                 <Link className="dropdown-item" to="#">cat3</Link>
               </div>
             </li>
-            <li className="nav-item mx-5 search">
+            <li className="nav-item mx-auto search">
               <form className="form-inline my-2 my-lg-0">
                 <input className="form-control mr-sm-3 w-75 searchinput" type="search" placeholder="Search" aria-label="Search"/>
                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </li>
-            <li className="nav-item ml-auto">
+            <li className="nav-item">
               <Link className="nav-link active" to="/featured">Featured <span className="sr-only">(current)</span></Link>
             </li>
             <li className="nav-item">
@@ -51,6 +57,7 @@ function Navigation() {
                 <li className="nav-item">
                   <Link className="nav-link" to="/user/dash">Dashboard</Link>              
                 </li>
+
               </Fragment>
             )}
             {isAuthenticated() && isAuthenticated().role===1 &&(
@@ -58,14 +65,16 @@ function Navigation() {
                 <li className="nav-item">
                   <Link className="nav-link" to="/admin/dash">Dashboard</Link>              
                 </li>
+
               </Fragment>
             )}
           </ul>
           {isAuthenticated() &&(
-              <Fragment>
+              <div>
                 <h5 className="text-white text-center">Hello {isAuthenticated().uName}</h5>
-              </Fragment>
-            )}
+                <Link className="d-block text-white text-center" to="#" onClick={handleLogout}>Logout</Link> 
+              </div>
+              )}
         </div>
       </nav>
     </div>
