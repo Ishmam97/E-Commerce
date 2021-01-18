@@ -1,9 +1,10 @@
-import React , { useState } from 'react';
-import {Link} from 'react-router-dom'
+import React , { useState , useEffect } from 'react';
+import {Link , useHistory} from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group';
 import isEmail from 'validator/lib/isEmail'
 import isEmpty from 'validator/lib/isEmpty'
 import equals from 'validator/lib/equals'
+import {setAuthentication , isAuthenticated} from './helpers/auth'
 
 import showMsg from './helpers/Message'
 import './css/signin.css'
@@ -12,6 +13,7 @@ import showLoading from './helpers/Loading'
 import {signUp , signIn} from '../api/auth'
 
 const Signin = () =>{
+    
     let state = {
         signin: true,
         signup: false,
@@ -38,7 +40,6 @@ const Signin = () =>{
         successMsg:false,
         errorMsg:false,
         Loading:false,
-        redtodash:false,
     })
     const {uname , email , pass , pass2 , successMsg , errorMsg , Loading} = formData;
 
@@ -50,6 +51,18 @@ const Signin = () =>{
             errorMsg:''
         })
     }
+
+    let hist = useHistory();
+    useEffect(()=>{
+        if (isAuthenticated && isAuthenticated().role === 1){
+            console.log('redirect to admin dash')
+            hist.push('/admin/dash')
+        }else if (isAuthenticated && isAuthenticated().role === 0){
+            console.log('redirect to user')
+            hist.push('/user/dash')
+        }
+    } , [hist])
+
     const signinSubmit = (evt)=>{
         evt.preventDefault();
         if (isEmpty(uname) || isEmpty(pass) ){
@@ -69,6 +82,20 @@ const Signin = () =>{
             const{ email , pass} = formData
             const data = { email , pass}
             signIn(data)
+                .then( response =>{
+                    
+                    setAuthentication(response.data.token , response.data.user)
+                    if (isAuthenticated && isAuthenticated().role === 1){
+                        console.log('redirect to admin dash')
+                        hist.push('/admin/dash')
+                    }else{
+                        console.log('redirect to user')
+                        hist.push('/user/dash')
+                    }
+                })
+                .catch(err =>{
+                    console.log('signin error' , err)
+            })
         }
 
         console.log(formData)
