@@ -95,6 +95,11 @@ const Signin = () =>{
                 })
                 .catch(err =>{
                     console.log('signin error' , err)
+                    setFormData({
+                        ...formData,
+                        Loading:false,
+                        errorMsg:err.response.data.error,
+                    })
             })
         }
 
@@ -146,7 +151,7 @@ const Signin = () =>{
                 console.log('Error in axios' , err)
                 setFormData({
                     ...formData,
-                    errorMsg: err.response.data.errorMsg,
+                    errorMsg: err.response.data.error,
                     Loading:false,
                 })
             })

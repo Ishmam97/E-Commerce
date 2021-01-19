@@ -19,9 +19,12 @@ function Navigation({history}) {
 
         <div className="collapse navbar-collapse navlist" id="navbarSupportedContent">
           <ul className="navbar-nav w-100 mr-auto text-center">
+            <li className="nav-item">
+              <Link className="nav-link" to="/"> <i className="fas fa-home"></i> Home<span className="sr-only">(current)</span></Link>
+            </li>
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Categories
+              <i class="fa fa-list-alt" aria-hidden="true"></i> Categories
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link className="dropdown-item" to="#">cat1</Link>
@@ -37,18 +40,18 @@ function Navigation({history}) {
               </form>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/featured">Featured <span className="sr-only">(current)</span></Link>
+              <Link className="nav-link active" to="/featured"><i class="fas fa-star"> Featured </i><span className="sr-only">(current)</span></Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/cart">Cart</Link>
+              <Link className="nav-link" to="/cart"><i class="fas fa-shopping-cart"></i> Cart</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">About us</Link>
+              <Link className="nav-link" to="/about"><i class="fas fa-globe"></i> About us</Link>
             </li>
             {!isAuthenticated() && (
               <Fragment>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/signin">Sign in</Link>              
+                  <Link className="nav-link" to="/signin"><i class="fas fa-sign-in-alt"></i> Sign in</Link>              
                 </li>
               </Fragment>
             )}

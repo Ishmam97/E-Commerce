@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 const AdminDash = ()=>{
+    
     return(
-        <div>Hello from ADMIN dashboard</div>
+        <h1>Hello from Admin</h1>
     )
 }
+
 export default AdminDash;
