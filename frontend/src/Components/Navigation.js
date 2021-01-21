@@ -24,7 +24,7 @@ function Navigation({history}) {
             </li>
             <li className="nav-item dropdown">
               <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-list-alt" aria-hidden="true"></i> Categories
+              <i className="fa fa-list-alt" aria-hidden="true"></i> Categories
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link className="dropdown-item" to="#">cat1</Link>

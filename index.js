@@ -6,7 +6,7 @@ const app = express()
 const connectDB = require('./database/db')
 const { json } = require('express')
 const authRoutes = require('./routes/auth')
-
+const categoryRoutes = require('./routes/category')
 app.use(cors())
 app.use(morgan('dev'))
 
@@ -18,9 +18,7 @@ connectDB();
 
 app.use('/api/auth' , authRoutes)
 
-app.get('/' , (req , res)=>{
-   res.send('hello')
-})
+app.use('/api/category' , categoryRoutes)
 
 const port = process.env.PORT || 9001;
 
