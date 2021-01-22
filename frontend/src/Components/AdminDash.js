@@ -11,7 +11,7 @@ const AdminDash = () => {
   const [loading , setLoading] = useState('');
   const handleCategoryChange = evt =>{
     setCategory(evt.target.value);    
-    
+    setSuccessMsg('')
   }
   const handleCategorySubmit = evt =>{
     evt.preventDefault();
@@ -23,11 +23,14 @@ const AdminDash = () => {
         setSuccessMsg('Valid Entry')
         setLoading(true)
         const data = {category}
-        createCategory(data).then(response=>{
-            setLoading(false);
+        createCategory(data).then(response=>{            
             setSuccessMsg(response.data.successMsg)
+            setLoading(false);
+            setCategory('')
+            setErrorMsg('')
         }).catch(err=>{
             setLoading(false)
+            setSuccessMsg('')
             setErrorMsg(err.response.data.errorMsg)
         })
     }
@@ -101,7 +104,7 @@ const AdminDash = () => {
                             {successMsg && showMsg(successMsg , 1)}              
                             {
                                 loading?(
-                                    showLoading()
+                                    <div className='text-center'>{showLoading()}</div>
                                     ):(
                                     <Fragment>
                                         <label className="text-secondary">Category</label>

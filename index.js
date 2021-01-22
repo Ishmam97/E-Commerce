@@ -5,15 +5,17 @@ const app = express()
 
 const connectDB = require('./database/db')
 const { json } = require('express')
+const cookieParser = require('cookie-parser')
+
 const authRoutes = require('./routes/auth')
 const categoryRoutes = require('./routes/category')
+
 app.use(cors())
 app.use(morgan('dev'))
 
-
-
-
 app.use(express.json())
+
+app.use(cookieParser())
 connectDB();
 
 app.use('/api/auth' , authRoutes)
