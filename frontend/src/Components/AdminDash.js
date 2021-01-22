@@ -1,18 +1,36 @@
-import React, { Fragment, useState } from "react";
-import {createCategory} from '../api/category'
+import React, { Fragment, useState , useEffect} from "react";
+import {createCategory , getCategories} from '../api/category'
 import isEmpty from 'validator/lib/isEmpty'
 import showMsg from './helpers/Message'
 import showLoading from './helpers/Loading'
 
 const AdminDash = () => {
+  
+
+  //states
+
+  const [categories , setCategories] = useState(null)
   const [category , setCategory ] = useState('');
   const [errorMsg , setErrorMsg] = useState('');
   const [successMsg , setSuccessMsg] = useState('');
-  const [loading , setLoading] = useState('');
+  const [loading , setLoading] = useState(false);
   const handleCategoryChange = evt =>{
     setCategory(evt.target.value);    
     setSuccessMsg('')
   }
+
+  //LifeCycle hooks
+  useEffect(()=>{
+      loadCategoires();
+  } , [loading])
+  const loadCategoires = async ()=>{
+      await getCategories().then(response=>{
+          setCategories(response.data.categories)          
+      }).catch(err=>{
+          console.log(err)
+      })
+  }
+  //event handlers
   const handleCategorySubmit = evt =>{
     evt.preventDefault();
     if (isEmpty(category)){
@@ -40,6 +58,9 @@ const AdminDash = () => {
     setErrorMsg('')
     setSuccessMsg('')
   }
+
+  //views
+
   const showAdminHeader = () => {
     
     return (
@@ -165,12 +186,13 @@ const AdminDash = () => {
                                             <label htmlFor="pCat" className='text-secondary'>Select category</label>
                                             <select name='pCat' className="form-contorl custom-select nr-sm-2" id="pCat">
                                                 <option selected>Choose one..</option>
-                                                <option value="Console">Console</option>
-                                                <option value="Chips">Chips</option>
+                                                {categories && categories.map(c =>{
+                                                    return <option key={c._id} value={c._id}>{c.category}</option>
+                                                })}
                                             </select>                                            
                                         </div>
                                         <div className="form-group col-md-6">
-                                            <label htmlFor="quantity text-secondary">Choose Quantity</label>
+                                            <label htmlFor="quantity " className='text-secondary'>Choose Quantity</label>
                                             <input className='form-control' name='quantity' type="number" min='0'/>
                                         </div>
                                       </div>
@@ -191,7 +213,7 @@ const AdminDash = () => {
       </div>
     )
 }
-
+  //render  
   return (
     <section>
       {showAdminHeader()}

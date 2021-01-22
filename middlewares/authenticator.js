@@ -2,8 +2,7 @@ const jwt = require('jsonwebtoken')
 const {jwtSecret} = require('../config/keys')
 
 exports.authenticateJWT = (req , res ,next)=>{
-    const token = req.cookies.token;
-    console.log(token);
+    const token = req.cookies.token;    
     if(!token){
         return res.status(401).json({
             errorMsg: 'No token found. Authorization failed'
