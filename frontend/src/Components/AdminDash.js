@@ -97,6 +97,7 @@ const AdminDash = () => {
       //success
       setErrorMsg("");
       setSuccessMsg("Success");
+      setLoading(true)
       let formData = new FormData();
       formData.append("pImg", pImg);
       formData.append("pName", pName);
@@ -107,10 +108,22 @@ const AdminDash = () => {
 
       createProduct(formData)
         .then((response) => {
-          console.log("server response", response);
+          setProductData({
+            pImg: null,
+            pName: "",
+            pDesc: "",
+            pPrice: "",
+            pCat: "",
+            pQty: "",
+          })
+          setLoading(false)
+          setSuccessMsg(response.data.successMsg)
+          setErrorMsg('')
         })
         .catch((err) => {
-          console.log(err);
+          setLoading(false)
+          setErrorMsg(err.response.data.errorMsg)
+          setSuccessMsg('')
         });
     }
   };
