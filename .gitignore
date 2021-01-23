@@ -6,6 +6,8 @@
 .pnp.js
 .eslintcache
 db.js
+uploads/*
+
 # testing
 /coverage
 
