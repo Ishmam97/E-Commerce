@@ -2,6 +2,7 @@ const Category = require('../models/Category')
 
 exports.create= async (req , res , next) =>{
     const {category } = req.body;
+    const useR = req.user._id
     try{
         let newCategory = new Category();
         const exist = await Category.findOne({category})
@@ -11,6 +12,7 @@ exports.create= async (req , res , next) =>{
             })
         }
         newCategory.category = category;
+        newCategory.createdby = useR;
         newCategory = await newCategory.save();
         res.status(200).json({
             successMsg: `${newCategory.category} was created`

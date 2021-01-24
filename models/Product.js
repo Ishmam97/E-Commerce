@@ -28,7 +28,11 @@ const productSchema = new mongoose.Schema({
     pPrice:{
         type: Number,
         required : true
+    },
+    createdby:{
+       type: String 
     }
+
 } , {timestamps: true})
 
 const Product = mongoose.model('Product' , productSchema)

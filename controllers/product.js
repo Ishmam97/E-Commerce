@@ -7,7 +7,7 @@ exports.create = async (req , res ) =>{
 
     const {filename} = req.file
     const {pName, pDesc, pPrice,pQty,pCat} = req.body
-
+    const useR = req.user._id
     try{
         let product = new Product();
         product.filename = filename
@@ -16,7 +16,7 @@ exports.create = async (req , res ) =>{
         product.pPrice = pPrice
         product.pQty = pQty
         product.pCat = pCat
-
+        product.createdby = useR
         await product.save()
         res.json({
             successMsg: `${pName} has been added to database`
