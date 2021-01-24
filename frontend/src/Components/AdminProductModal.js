@@ -23,6 +23,7 @@ const ShowProductModal = () => {
     useEffect(() => {
       loadCategoires();
     }, [loading]);
+    
     const loadCategoires = async () => {
       await getCategories()
         .then((response) => {
