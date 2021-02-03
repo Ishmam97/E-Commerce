@@ -172,6 +172,7 @@ const ShowProductModal = () => {
                           <option selected value="">
                             Choose one..
                           </option>
+                          {/**Load Categories from database and populate options with categories**/}
                           {categories &&
                             categories.map((c) => {
                               return (

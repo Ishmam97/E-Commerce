@@ -1,5 +1,5 @@
 const {check , validationResult} = require('express-validator')
-
+/*Server side validation of form data */
 exports.signupValidator = [
     check('uname').not().isEmpty().trim().withMessage('Username required'),
     check('email').isEmail().normalizeEmail().withMessage('Invalid email'),

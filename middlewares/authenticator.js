@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const {jwtSecret} = require('../config/keys')
 
+//if token exist decode token with jwtSecret else return error message
+
 exports.authenticateJWT = (req , res ,next)=>{
     const token = req.cookies.token;    
     if(!token){
