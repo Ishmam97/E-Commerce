@@ -19,7 +19,8 @@ exports.create = async (req , res ) =>{
         product.createdby = useR
         await product.save()
         res.json({
-            successMsg: `${pName} has been added to database`
+            successMsg: `${pName} has been added to database`,
+            product
         })
         
     }catch(e){

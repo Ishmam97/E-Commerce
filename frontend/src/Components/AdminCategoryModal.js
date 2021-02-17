@@ -1,49 +1,45 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { createCategory } from "../api/category";
+import React, { Fragment, useState } from "react";
+// import { createCategory } from "../api/category";
 import isEmpty from "validator/lib/isEmpty";
 import showMsg from "./helpers/Message";
 import showLoading from "./helpers/Loading";
 
+//redux
+import {useSelector , useDispatch} from 'react-redux'
+import {clear_messages} from '../Redux/actions/messageActions'
+import {createCategory} from '../Redux/actions/categoryActions'
 const ShowCategoryModal = () => {
-    
+    //redux global states
+    const {successMsg , errorMsg} = useSelector(state => state.messages)
+    const {loading} = useSelector(state => state.loading)
+    const dispatch = useDispatch()
+    //local states
     const [category, setCategory] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
-    const [successMsg, setSuccessMsg] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [cErrorMsg, setCErrorMsg] = useState("");
+    // const [successMsg, setSuccessMsg] = useState("");
+    // const [loading, setLoading] = useState(false);
 
 
     const messageClear = (evt) => {
-    setErrorMsg("");
-    setSuccessMsg("");
+      dispatch(clear_messages())
+      setCErrorMsg("")
     };
 
     const handleCategoryChange = (evt) => {
         setCategory(evt.target.value);
-        setSuccessMsg("");
+        dispatch(clear_messages())
+        setCErrorMsg("")
     };
 
     const handleCategorySubmit = (evt) => {
         evt.preventDefault();
         if (isEmpty(category)) {
-          setErrorMsg("Cant be empty");
-          setSuccessMsg("");
+          setCErrorMsg("Cant be empty");
+          
         } else {
-          setErrorMsg("");
-          setSuccessMsg("Valid Entry");
-          setLoading(true);
           const data = { category };
-          createCategory(data)
-            .then((response) => {
-              setSuccessMsg(response.data.successMsg);
-              setLoading(false);
-              setCategory("");
-              setErrorMsg("");
-            })
-            .catch((err) => {
-              setLoading(false);
-              setSuccessMsg("");
-              setErrorMsg(err.response.data.errorMsg);
-            });
+          dispatch(createCategory(data))
+          setCategory('')
         }
     };
 
@@ -65,6 +61,7 @@ const ShowCategoryModal = () => {
                 </button>
               </div>
               <div className="modal-body my-2">
+                {cErrorMsg && showMsg(cErrorMsg, 0)}
                 {errorMsg && showMsg(errorMsg, 0)}
                 {successMsg && showMsg(successMsg, 1)}
                 {loading ? (

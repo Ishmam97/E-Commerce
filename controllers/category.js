@@ -21,6 +21,7 @@ exports.create = async (req, res, next) => {
     //Store new category in DB
     newCategory = await newCategory.save();
     res.status(200).json({
+      category : newCategory,
       successMsg: `${newCategory.category} was created`,
     });
   } catch (err) {
