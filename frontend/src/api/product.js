@@ -15,3 +15,7 @@ export const getProducts = async()=>{
     const response = await axios.get('/api/product')
     return response
 }
+export const delProduct = async()=>{
+    const resp = await axios.delete('/api/product')
+    return resp
+}

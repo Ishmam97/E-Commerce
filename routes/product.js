@@ -8,5 +8,5 @@ const productController = require('../controllers/product')
 router.post('/' ,authenticateJWT , upload.single('pImg'), productController.create)
 
 router.get('/', productController.readAll)
-
+router.delete('/:pId' , authenticateJWT , productController.delete)
 module.exports = router;

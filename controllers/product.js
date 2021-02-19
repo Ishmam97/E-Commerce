@@ -1,4 +1,5 @@
 const Product = require("../models/Product")
+const fs = require('fs')
 
 exports.create = async (req , res ) =>{
     console.log(req.body)
@@ -40,6 +41,23 @@ exports.readAll = async (req , res ) =>{
         console.log(e)
         res.status(500).json({
             errorMsg: "error occured in read",
+        })
+    }
+}
+exports.delete = async (req , res ) =>{
+    try{    
+        const pId = req.params.pId
+        const deleted = await Product.findByIdAndDelete(pId);
+        //delete img from uploads
+        fs.unlink(`uploads/${deleted.filename}`,(err)=>{
+            if(err) throw err;
+            console.log("image deleted")
+        })
+        res.json(deleted)
+    }catch(e){
+        console.log(e)
+        res.status(500).json({
+            errorMsg: "error occured in delete",
         })
     }
 }
