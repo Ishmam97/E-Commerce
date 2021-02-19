@@ -1,4 +1,4 @@
-.card {
+.pCard {
     position: relative;
     width: 300px;
     height: 400px;
@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 
-.card::before {
+.pCard::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -18,18 +18,18 @@
     
 }
 
-.card:hover::before {
+.pCard:hover::before {
     transform: skewY(65deg);
 
 }
 
-.card::after {
+.pCard::after {
     position: absolute;
     bottom: 0;
     top: 0;
 }
 
-.card .imgbox {
+.pCard .imgbox {
     position: relative;
     width: 100%;
     display: flex;
@@ -38,15 +38,15 @@
     padding-top: 20px;
     z-index: 1;
 }
-.card .imgbox img {
+.pCard .imgbox img {
     max-width: 100%;
     transition: 0.5s;
 }
-.card:hover .imgbox img {
+.pCard:hover .imgbox img {
     max-width: 50%;
 
 }
-.card .cardBody {
+.pCard .cardBody {
     position: relative;
     padding: 20px;
     display: flex;
@@ -55,7 +55,7 @@
     flex-direction: column;
     z-index: 1;
 }
-.card .cardBody h3 {
+.pCard .cardBody h3 {
     font-size: 18px;
     color: #000;
     font-weight: 500;
@@ -64,7 +64,7 @@
 
 }
 
-.card .cardBody .price {
+.pCard .cardBody .price {
     font-size: 24px;
     color: #000;
     font-weight: 500;
@@ -72,7 +72,7 @@
 
 }
 
-.card .cardBody .cart {
+.pCard .cardBody .cart {
     position: relative;
     top: 200px;
     padding: 10px 15px;
@@ -89,7 +89,7 @@
 
 }
 
-.card .cardBody .heart {
+.pCard .cardBody .heart {
     position: relative;
     right: 100px;
     bottom: 40px;
@@ -100,7 +100,7 @@
 
 
 
-.card:hover .cardBody .cart{
+.pCard:hover .cardBody .cart{
     top: 0;
     opacity: 1;
 }

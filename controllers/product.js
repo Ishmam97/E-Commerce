@@ -30,3 +30,16 @@ exports.create = async (req , res ) =>{
         })
     }
 }
+
+exports.readAll = async (req , res ) =>{
+    try{    
+        const products = await Product.find({}).populate('pCat' , 'category')
+        res.json({successMsg:'Retreived products',products})
+
+    }catch(e){
+        console.log(e)
+        res.status(500).json({
+            errorMsg: "error occured in read",
+        })
+    }
+}

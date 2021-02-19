@@ -32,7 +32,7 @@ function Item() {
   }
 
   return (
-    <div className="card">
+    <div className="pCard">
       <div className="imgbox">
         <img src="../img/ps5.png" alt="product"></img>
       </div>

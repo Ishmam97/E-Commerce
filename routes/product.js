@@ -7,5 +7,6 @@ const upload = require('../middlewares/multer')
 const productController = require('../controllers/product')
 router.post('/' ,authenticateJWT , upload.single('pImg'), productController.create)
 
+router.get('/', productController.readAll)
 
 module.exports = router;

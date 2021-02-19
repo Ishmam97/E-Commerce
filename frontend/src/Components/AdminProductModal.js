@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 // import { getCategories } from "../api/category";
 // import { createProduct } from "../api/product";
 import isEmpty from "validator/lib/isEmpty";
@@ -7,7 +7,6 @@ import showLoading from "./helpers/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { clear_messages } from "../Redux/actions/messageActions";
 import { createProduct } from "../Redux/actions/productActions";
-import { getCategories } from "../Redux/actions/categoryActions";
 
 const ShowProductModal = () => {
   //redux globals

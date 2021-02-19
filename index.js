@@ -14,12 +14,16 @@ const authRoutes = require('./routes/auth')
 const categoryRoutes = require('./routes/category')
 const productRoutes = require('./routes/product')
 
+//middleware
 app.use(cors())
 app.use(morgan('dev'))
 
 app.use(express.json())
 
 app.use(cookieParser())
+// app.use(express.static('public'));
+app.use(express.static('uploads'))
+app.use('/api/images' , require('./routes/images'))
 
 //connect to mongoDB
 connectDB();
