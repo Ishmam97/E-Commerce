@@ -22,7 +22,7 @@ app.use(express.json())
 
 app.use(cookieParser())
 // app.use(express.static('public'));
-app.use(express.static('uploads'))
+app.use('/uploads' , express.static('uploads'))
 app.use('/api/images' , require('./routes/images'))
 
 //connect to mongoDB

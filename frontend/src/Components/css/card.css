@@ -1,0 +1,10 @@
+.pImg{
+    height: auto;
+    max-height: 20rem;
+    max-width: 100%;
+}
+.card{
+    min-height: 30rem;
+    max-height: 35rem;
+    overflow:hidden;
+}
