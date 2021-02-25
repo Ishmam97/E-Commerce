@@ -61,3 +61,13 @@ exports.delete = async (req , res ) =>{
         })
     }
 }
+exports.update = async (req , res) =>{
+    try{
+        
+    }catch(e){
+        console.log(`edit error : ${e}`)
+        res.status(500).json({
+            errorMsg:"error occured in editproduct"
+        })
+    }
+}

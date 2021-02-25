@@ -7,6 +7,7 @@ import Signup from './Components/Signup'
 import NotFound from './Components/NotFound'
 import UserDash from './Components/UserDash'
 import AdminDash from './Components/AdminDash'
+import AdminEditProduct from './Components/AdminEditProduct'
 import AdminRoute from './Components/AdminRoute'
 import UserRoute from './Components/UserRoute'
 import {BrowserRouter , Switch , Route} from 'react-router-dom'
@@ -34,6 +35,7 @@ const App = ()=>{
             <Route exact path='/signup' component={Signup}/>
             <UserRoute exact path='/user/dash' component={UserDash}/>
             <AdminRoute exact path='/admin/dash' component={AdminDash}/>
+            <AdminRoute exact path='/admin/edit/product/:pId' component={AdminEditProduct}/>
             <Route component={NotFound}/>
           </Switch>
         </main>

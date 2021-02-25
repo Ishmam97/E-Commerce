@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import './css/card.css'
 
 import {useDispatch} from 'react-redux'
@@ -19,7 +20,12 @@ function Card({id , img , name , price , qt , cat, desc}) {
          (desc.substring(0 , 100)+'...'):(desc)}</p>
         <span className="text-center">Tk.{price}</span>
         <div className="buttons">
-          <button className='btn btn-success btn-md m-1'><i className="far fa-edit pr-1"></i>Edit</button>
+          <Link to={`/admin/edit/product/${id}`}>
+            <button className='btn btn-success btn-md m-1'>
+              <i className="far fa-edit pr-1"></i>Edit
+            </button>
+          </Link>
+          
           <button className='btn btn-danger btn-md m-1' onClick={()=>{
           dispatch(delProduct(id))}
           }><i className="far fa-trash-alt pr-1" ></i>Delete</button>

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {START_LOADING , STOP_LOADING} from '../constants/loadingConstants'
 import {SHOW_SUCCESS_MESSAGE , SHOW_ERROR_MESSAGE} from '../constants/messageConstants'
-import { GET_PRODUCTS , CREATE_PRODUCTS , DELETE_PRODUCT} from '../constants/productConstants'
+import { GET_PRODUCTS , CREATE_PRODUCTS , DELETE_PRODUCT , EDIT_PRODUCT} from '../constants/productConstants'
 
 export const createProduct = formData => async dispatch=>{
     try{
@@ -43,4 +43,15 @@ export const delProduct = (pId) => async dispatch=>{
         dispatch({type : STOP_LOADING})
         dispatch({type : SHOW_ERROR_MESSAGE , payload: err.resp.data.errorMsg})
     }
+}
+export const editProduct =(pId) =>async dispatch=>{
+    try{
+        dispatch({type : START_LOADING})
+        const resp = await axios.put(`/api/product/${pId}`)
+        dispatch({type : STOP_LOADING})
+        dispatch({type : EDIT_PRODUCT , payload: resp.data.products})   
+    }catch(err){
+
+    }
+
 }
