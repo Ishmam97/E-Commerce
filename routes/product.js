@@ -9,5 +9,5 @@ router.post('/' ,authenticateJWT , upload.single('pImg'), productController.crea
 
 router.get('/', productController.readAll)
 router.delete('/:pId' , authenticateJWT , productController.delete)
-router.put('/:pId' , authenticateJWT , productController.update)
+router.put('/:pId' , authenticateJWT ,upload.single('pImg'), productController.update)
 module.exports = router;

@@ -31,7 +31,7 @@ export const getProducts = () => async dispatch=>{
         dispatch({type : SHOW_ERROR_MESSAGE , payload: err.resp.data.errorMsg})
     }
 }
-export const delProduct = (pId) => async dispatch=>{
+export const delProduct = (pId ) => async dispatch=>{
     try{
         dispatch({type : START_LOADING})
         const resp = await axios.delete(`/api/product/${pId}`)
@@ -44,14 +44,17 @@ export const delProduct = (pId) => async dispatch=>{
         dispatch({type : SHOW_ERROR_MESSAGE , payload: err.resp.data.errorMsg})
     }
 }
-export const editProduct =(pId) =>async dispatch=>{
+export const editProduct =(pId , formData ) =>async dispatch=>{
     try{
-        dispatch({type : START_LOADING})
-        const resp = await axios.put(`/api/product/${pId}`)
+        dispatch({type : START_LOADING})        
+        const resp = await axios.put(`/api/product/${pId}` , formData)
         dispatch({type : STOP_LOADING})
+        dispatch({type : SHOW_SUCCESS_MESSAGE , payload: resp.data.successMsg})
         dispatch({type : EDIT_PRODUCT , payload: resp.data.products})   
     }catch(err){
-
+        console.log("EDIT PRODUCT ERROR" , err)
+        dispatch({type : STOP_LOADING})
+        dispatch({type : SHOW_ERROR_MESSAGE , payload: err.resp.data.errorMsg})
     }
 
 }

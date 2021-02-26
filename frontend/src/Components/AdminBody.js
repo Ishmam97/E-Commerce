@@ -4,20 +4,17 @@ import {useSelector} from 'react-redux'
 
 function AdminBody(props) {
     const {products } = useSelector(state => state.products)
-    console.log(products)
+    
     return (
         <div className='container'>
-            <div className="row card-deck">
-                
+            <div className="row card-deck">                
                     {
                         products.map((product , index) =>{
                             return(
                                     <Card key={index} id={product._id} img={product.filename} name={product.pName} price={product.pPrice} qt={product.pQty} cat={product.pCat.category} desc={product.pDesc}/>
                         )})
-                    }
-                
-            </div>
-           
+                    }                
+            </div>           
         </div>
     );
 }

@@ -6,7 +6,7 @@ import showLoading from "./helpers/Loading";
 import AdminHeader from "./AdminHeader";
 import { useSelector, useDispatch } from "react-redux";
 import { clear_messages } from "../Redux/actions/messageActions";
-import { createProduct } from "../Redux/actions/productActions";
+import { editProduct } from "../Redux/actions/productActions";
 import {getCategories} from '../Redux/actions/categoryActions'
 import {getProducts} from '../Redux/actions/productActions'
 
@@ -20,7 +20,6 @@ const AdminEditProduct = ({ match }) => {
   }, [dispatch]);
 
   const pId = match.params.pId;
-  console.log(pId);
 
   const { successMsg, errorMsg } = useSelector((state) => state.messages);
   const { loading } = useSelector((state) => state.loading);
@@ -59,9 +58,9 @@ const AdminEditProduct = ({ match }) => {
   };
   const handleProductSubmit = (evt) => {
     evt.preventDefault();
-    if (pImg === null) {
+    /*if (pImg === null) {
       setCErrorMsg("Please select img");
-    } else if (
+    } else*/ if (
       isEmpty(pName) ||
       isEmpty(pPrice) ||
       isEmpty(pDesc) ||
@@ -73,17 +72,18 @@ const AdminEditProduct = ({ match }) => {
     } else {
       //success
       setCErrorMsg("");
-      // setSuccessMsg("Success");
-      // setLoading(true)
+
       let formData = new FormData();
+      
       formData.append("pImg", pImg);
       formData.append("pName", pName);
       formData.append("pDesc", pDesc);
       formData.append("pPrice", pPrice);
       formData.append("pQty", pQty);
-      formData.append("pCat", pCat);
-
-      // dispatch(editProduct(formData));
+      formData.append("pCat", pCat);      
+      if (formData){
+        dispatch(editProduct(pId , formData));
+      }
       setProductData({
         pImg: null,
         pName: "",
@@ -92,6 +92,7 @@ const AdminEditProduct = ({ match }) => {
         pCat: "",
         pQty: "",
       });
+
     }
   };
 

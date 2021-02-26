@@ -63,11 +63,30 @@ exports.delete = async (req , res ) =>{
 }
 exports.update = async (req , res) =>{
     try{
-        
+        const pId = req.params.pId
+        console.log(pId)
+        const {pName,pImg, pDesc, pPrice,pQty,pCat} = req.body
+        const useR = req.user._id
+        console.log(req.body)
+            // const {filename} = req.file
+            // const edited = await Product.findByIdAndUpdate(pId , {pName, pDesc, pPrice,pQty,pCat , filename} , {upsert:true} , (err ,res)=>{
+            //     if(err){
+            //         console.log(err)
+            //         res.status(500).json({
+            //             errorMsg:"error occured in editproduct"
+            //         })
+            //     }else{
+            //         res.json({
+            //             successMsg:"success edit product",
+            //             edited
+            //         })
+            //      }
+            //     })
+
     }catch(e){
         console.log(`edit error : ${e}`)
         res.status(500).json({
-            errorMsg:"error occured in editproduct"
+            errorMsg:`error occured in editproduct ${e}`
         })
     }
 }
