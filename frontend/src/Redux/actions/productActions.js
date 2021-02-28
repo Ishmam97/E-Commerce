@@ -47,10 +47,10 @@ export const delProduct = (pId ) => async dispatch=>{
 export const editProduct =(pId , formData ) =>async dispatch=>{
     try{
         dispatch({type : START_LOADING})        
-        const resp = await axios.put(`/api/product/${pId}` , formData)
+        const resp = await axios.patch(`/api/product/${pId}` , formData)
         dispatch({type : STOP_LOADING})
         dispatch({type : SHOW_SUCCESS_MESSAGE , payload: resp.data.successMsg})
-        dispatch({type : EDIT_PRODUCT , payload: resp.data.products})   
+        dispatch({type : EDIT_PRODUCT , payload: resp.data.edited})   
     }catch(err){
         console.log("EDIT PRODUCT ERROR" , err)
         dispatch({type : STOP_LOADING})

@@ -1,5 +1,6 @@
 const Product = require("../models/Product")
 const fs = require('fs')
+const mongoose = require("mongoose")
 
 exports.create = async (req , res ) =>{
     console.log(req.body)
@@ -62,27 +63,39 @@ exports.delete = async (req , res ) =>{
     }
 }
 exports.update = async (req , res) =>{
+    console.log(req.params)
+    const {pId : _id} = req.params
+    if(!mongoose.Types.ObjectId.isValid(_id)){
+        console.log(`id ${_id} not found`)
+        res.status(404).json({
+            errorMsg: "No post found"
+        })
+    }    
     try{
-        const pId = req.params.pId
-        console.log(pId)
-        const {pName,pImg, pDesc, pPrice,pQty,pCat} = req.body
-        const useR = req.user._id
-        console.log(req.body)
-            // const {filename} = req.file
-            // const edited = await Product.findByIdAndUpdate(pId , {pName, pDesc, pPrice,pQty,pCat , filename} , {upsert:true} , (err ,res)=>{
-            //     if(err){
-            //         console.log(err)
-            //         res.status(500).json({
-            //             errorMsg:"error occured in editproduct"
-            //         })
-            //     }else{
-            //         res.json({
-            //             successMsg:"success edit product",
-            //             edited
-            //         })
-            //      }
-            //     })
+        if(req.body.pImg !=='null'){
+            var ob = {...req.body, 'filename': req.file.filename, 'createdby':req.user._id}            
+        }else{
+            const {pName, pDesc, pPrice,pQty,pCat} = req.body
+            var ob = {pName , pDesc , pPrice , pQty , pCat , 'createdby':req.user._id}
+            
+        }        
+        console.log("object : " , ob)
+        /// TO DO DELETE OLD FILE FROM UPLOADS IMPLEMENT
 
+        var edited = await Product.findByIdAndUpdate(_id, ob , {new : true } ).then((docs)=>{
+            if(docs) {
+                res.json({            
+                    successMsg:"success edit product",
+                    "edited" : docs
+                })               
+            } else {
+                console.log("docs not found")
+            }
+        }).catch(err =>{
+            console.log(err)
+        })
+        
+        
     }catch(e){
         console.log(`edit error : ${e}`)
         res.status(500).json({
