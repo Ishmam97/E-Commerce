@@ -1,5 +1,5 @@
 import './App.css';
-import React /*, { useEffect}*/ from 'react';
+import React , { useEffect} from 'react';
 import Navigation from './Components/Navigation';
 import Home from './Components/Home'
 import Signin from './Components/Signin'
@@ -12,16 +12,15 @@ import AdminRoute from './Components/AdminRoute'
 import UserRoute from './Components/UserRoute'
 import {BrowserRouter , Switch , Route} from 'react-router-dom'
 //redux
-// import {useDispatch} from 'react-redux'
-// import {getCategories} from './Redux/actions/categoryActions'
-
+import {getProducts} from './Redux/actions/productActions'
+import {useDispatch} from 'react-redux'
 
 const App = ()=>{ 
   
-  // const dispatch = useDispatch();
-  // useEffect(()=>{
-  //   dispatch(getCategories())
-  // },[dispatch])
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getProducts())
+  },[dispatch])
 
   return (
       <BrowserRouter>

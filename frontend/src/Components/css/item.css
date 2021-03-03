@@ -2,7 +2,7 @@
     position: relative;
     width: 300px;
     height: 400px;
-    background: #122936;
+    background: #d1fdff;
     border-radius:  30px 30px 30px 30px;
     overflow: hidden;
 }
@@ -20,7 +20,6 @@
 
 .pCard:hover::before {
     transform: skewY(65deg);
-
 }
 
 .pCard::after {
@@ -39,6 +38,9 @@
     z-index: 1;
 }
 .pCard .imgbox img {
+    height: auto;
+    min-height: 175px;
+    max-height: 200px;
     max-width: 100%;
     transition: 0.5s;
 }
@@ -133,9 +135,6 @@
 #number {
     position:  relative;
     top: 6px;
-    
-    
-    
     padding: 0px 20px;
 }
 
