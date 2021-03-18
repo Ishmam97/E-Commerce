@@ -11,7 +11,7 @@ exports.signinValidator = [
 ];
 
 exports.ValidatorResults = (req , res , next)=>{
-    // console.log("reached here")
+
     const result = validationResult(req)
     const hasErrors = !result.isEmpty()
     if(hasErrors){
