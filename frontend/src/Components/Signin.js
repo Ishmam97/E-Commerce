@@ -31,10 +31,10 @@ const Signin = () => {
   };
 
   const [formData, setFormData] = useState({
-    uname: "ishmeme",
-    email: "ishmeme@me.com",
-    pass: "abc123",
-    pass2: "abc123",
+    uname: "",
+    email: "",
+    pass: "",
+    pass2: "",
     successMsg: false,
     errorMsg: false,
     Loading: false,
