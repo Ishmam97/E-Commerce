@@ -76,25 +76,22 @@ exports.update = async (req , res) =>{
             var ob = {...req.body, 'filename': req.file.filename, 'createdby':req.user._id}            
         }else{
             const {pName, pDesc, pPrice,pQty,pCat} = req.body
-            var ob = {pName , pDesc , pPrice , pQty , pCat , 'createdby':req.user._id}
-            
+            var ob = {pName , pDesc , pPrice , pQty , pCat , 'createdby':req.user._id}            
         }        
         console.log("object : " , ob)
         /// TO DO DELETE OLD FILE FROM UPLOADS IMPLEMENT
-
-        var edited = await Product.findByIdAndUpdate(_id, ob , {new : true } ).then((docs)=>{
-            if(docs) {
-                res.json({            
-                    successMsg:"success edit product",
-                    "edited" : docs
-                })               
-            } else {
-                console.log("docs not found")
-            }
-        }).catch(err =>{
-            console.log(err)
-        })
         
+        console.log()
+        var edited = await Product.findByIdAndUpdate(_id, ob ).catch(e => console.log(e))
+        fs.unlink(`uploads/${edited.filename}`,(err)=>{
+            if(err) throw err;
+            console.log(edited.filename ,"image deleted")
+        })
+        console.log('edited :###')
+        res.status(200).json({
+            edited,
+            successMsg:"successfully edited"
+        })
         
     }catch(e){
         console.log(`edit error : ${e}`)

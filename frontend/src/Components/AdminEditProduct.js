@@ -1,6 +1,7 @@
 import React, { Fragment, useState , useEffect } from "react";
 import { Link } from "react-router-dom";
 import isEmpty from "validator/lib/isEmpty";
+
 import showMsg from "./helpers/Message";
 import showLoading from "./helpers/Loading";
 import AdminHeader from "./AdminHeader";
@@ -58,15 +59,13 @@ const AdminEditProduct = ({ match }) => {
   };
   const handleProductSubmit = (evt) => {
     evt.preventDefault();
-    /*if (pImg === null) {
-      setCErrorMsg("Please select img");
-    } else*/ if (
-      isEmpty(pName) ||
-      isEmpty(pPrice) ||
-      isEmpty(pDesc) ||
+     if (
+      isEmpty(pName) &&
+      isEmpty(pPrice) &&
+      isEmpty(pDesc) &&
       isEmpty(pQty)
     ) {
-      setCErrorMsg("ALL fields required!");
+      setCErrorMsg("Must have atleast one field to change");
     } else if (isEmpty(pCat)) {
       setCErrorMsg("please select a category");
     } else {
