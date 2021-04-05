@@ -64,10 +64,10 @@ const Signin = () => {
 
   const signinSubmit = (evt) => {
     evt.preventDefault();
-    if (isEmpty(uname) || isEmpty(pass)) {
+    if (isEmpty(email) || isEmpty(pass)) {
       setFormData({
         ...formData,
-        errorMsg: "All fields must be filled",
+        errorMsg: "All fields must be filled fe",
         successMsg: false,
       });
     } else if (pass.length < 6) {

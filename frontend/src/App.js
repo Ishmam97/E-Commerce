@@ -3,7 +3,7 @@ import React , { useEffect} from 'react';
 import Navigation from './Components/Navigation';
 import Home from './Components/Home'
 import Signin from './Components/Signin'
-import Signup from './Components/Signup'
+
 import NotFound from './Components/NotFound'
 import UserDash from './Components/UserDash'
 import AdminDash from './Components/AdminDash'
@@ -31,7 +31,7 @@ const App = ()=>{
             {/*react routing*/}
             <Route exact path='/' component={Home}/>
             <Route exact path='/signin' component={Signin}/>
-            <Route exact path='/signup' component={Signup}/>
+            
             <UserRoute exact path='/user/dash' component={UserDash}/>
             <AdminRoute exact path='/admin/dash' component={AdminDash}/>
             <AdminRoute exact path='/admin/edit/product/:pId' component={AdminEditProduct}/>

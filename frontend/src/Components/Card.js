@@ -12,7 +12,7 @@ function Card({id , img , name , price , qt , cat, desc}) {
       <div className='card'>
         <h1 className='text-center'>{name}</h1>
         <div className='text-center'>
-          <a href="#">
+          <a href="#a">
             <img className='img-fluid pImg' src={`http://localhost:9001/uploads/${img}`} alt="product"/>
           </a> 
         </div>       
