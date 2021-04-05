@@ -11,7 +11,7 @@ import { editProduct } from "../Redux/actions/productActions";
 import {getCategories} from '../Redux/actions/categoryActions'
 import {getProducts} from '../Redux/actions/productActions'
 
-const AdminEditProduct = ({ match }) => {
+const AdminEditProduct = ({ match , history}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
@@ -57,7 +57,7 @@ const AdminEditProduct = ({ match }) => {
     setCErrorMsg("")
     messageClear()
   };
-  const handleProductSubmit = (evt) => {
+  const handleProductSubmit = async (evt) => {
     evt.preventDefault();
      if (
       isEmpty(pName) &&
@@ -81,7 +81,11 @@ const AdminEditProduct = ({ match }) => {
       formData.append("pQty", pQty);
       formData.append("pCat", pCat);      
       if (formData){
-        dispatch(editProduct(pId , formData));
+        await dispatch(editProduct(pId , formData));
+        setTimeout(()=>{
+          history.push('/admin/dash')
+        },500)
+        
       }
       setProductData({
         pImg: null,

@@ -86,8 +86,7 @@ exports.update = async (req , res) =>{
         fs.unlink(`uploads/${edited.filename}`,(err)=>{
             if(err) throw err;
             console.log(edited.filename ,"image deleted")
-        })
-        console.log('edited :###')
+        })        
         res.status(200).json({
             edited,
             successMsg:"successfully edited"
