@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start-server": "nodemon index.js --ignore '../frontend/",
+    "start-server": "nodemon index.js --ignore '../frontend/'",
     "start-client": "npm start --prefix ../frontend",
     "dev": "concurrently \"npm run start-server\" \"npm run start-client\""
   },
