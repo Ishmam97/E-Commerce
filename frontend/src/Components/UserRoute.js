@@ -5,7 +5,7 @@ import { isAuthenticated } from './helpers/auth';
 
 
 const UserRoute = () => {
-    isAuthenticated() && isAuthenticated().role === 0 ? <Outlet /> : <Navigate to="/Signin" />;
+    return isAuthenticated() && isAuthenticated().role === 0 ? <Outlet /> : <Navigate to="/signin" />;
 }
 
 

@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux'
 
 function AdminBody(props) {
     const {products } = useSelector(state => state.products)
-    
     return (
         <div className='container'>
             <div className="row card-deck">                
