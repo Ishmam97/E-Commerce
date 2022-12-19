@@ -3,77 +3,37 @@ import "./css/item.css";
 import { Link } from "react-router-dom";
 
 function Item({id , img , name , price , qt , cat, desc}) {
-  const [state, setState] = useState(() => {
-    // Read from user's wishlist to check if this item was added earlier
-    return 0;
-  });
-
-  // const [cartState, setCartState] = useState(() => {
-  //   return 0;
-  // });
-
-  function addToCart(e) {
-    console.log("Product added.");
-
-  //   if (cartState === 0) {
-  //     setCartState((cartState) => 1);
-  //   }
-  }
-  
-  function likedProduct(e) {
-    if (state === 0) {
-      setState((state) => 1);
-      console.log("Product added to wishlist.");
-      e.target.src = "../img/heart.png";
-    } else {
-      setState((state) => 0);
-      console.log("Product removed from wishlist.");
-      e.target.src = "../img/unheart.png";
-    }
-  }
-
+  const [count, setCount] = useState(0);
+  console.log(count)
   return (
-    <div className="pCard m-3">
+    <div className="item my-3">
       <div className="imgbox">        
         <img className='img-fluid pImg' src={`http://localhost:9001/uploads/${img}`} alt={`${id}_${name}_${cat}_${desc}`}></img>
       </div>
-      <div className="cardBody">
-        <h5>{name}</h5>
-        <h4 className="price">${price}</h4>
-
-        {/* <div className="counterBlock">
-          <button id="minus"> - </button>
-          <p id="number"> 0 </p>
-          <button id="plus"> + </button>
-        </div> */}
-        <button
-          className="cart"
-          onClick={(e) => {
-            addToCart(e)
-            console.log(e.target);
-          }}
-        >
-          {" "}
-          Add to Cart
-        </button>
-
-        <Link
-          className="heart"
-          to="#"
-          onClick={(e) => {
-            likedProduct(e);
-          }}
-        >
-          {" "}
-          <img
-            src="../img/unheart.png"
-            alt="like button"
-            height="32px"
-            width="32px"
-          ></img>
-        </Link>
+      {/* center div contents */}
+      <div className="details">
+        <div className="content d-flex flex-column align-items-center">
+          <h2>{name}</h2>
+          <p>{desc.length > 100 ?
+            (desc.substring(0, 100) + "...") : (desc)}</p>
+          <span className="text-center">Tk.{price}</span>
+          <div className="buttons">
+            {/* add to cart button when clicked turns into a counter with + and -  */}
+            <button className='btn btn-success btn-md m-1' onClick={() => {
+              setCount(count + 1)
+            }}>
+              <i className="fas fa-cart-plus pr-1"></i>Add to Cart
+            </button>
+            <Link to={`/product/${id}`}>
+              <button className='btn btn-primary btn-md m-1'>
+                <i className="fas fa-info-circle pr-1"></i>Details
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
+
   );
 }
 
