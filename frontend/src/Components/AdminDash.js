@@ -1,5 +1,4 @@
-import React , {useEffect} from "react";
-
+import React , {useEffect, useState} from "react";
 
 //components
 import AdminHeader from './AdminHeader'
@@ -18,13 +17,17 @@ const AdminDash = () => {
   }, [dispatch])
   useEffect(()=>{
     dispatch(getProducts())
-  },[dispatch])
+  }, [dispatch])
+  
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section>
       <AdminHeader/>
-      <ActionBtns/>
+      <ActionBtns setShowModal={setShowModal} />
       <CategoryModal/>
-      <ProductModal/>
+      {/* product modal and pass showModal and setShow as props */}
+      <ProductModal showModal={showModal} setShowModal={setShowModal}/>
       <AdminBody/>
     </section>
   );
