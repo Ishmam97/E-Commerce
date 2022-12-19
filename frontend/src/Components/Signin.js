@@ -105,9 +105,6 @@ const Signin = () => {
           });
         });
     }
-
-    console.log(formData);
-    console.log("from signin");
   };
   const signupSubmit = (evt) => {
     evt.preventDefault();
