@@ -19,15 +19,16 @@ const AdminDash = () => {
     dispatch(getProducts())
   }, [dispatch])
   
-  const [showModal, setShowModal] = useState(false);
+  const [showProductModal, setShowProductModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
 
   return (
     <section>
       <AdminHeader/>
-      <ActionBtns setShowModal={setShowModal} />
-      <CategoryModal/>
+      <ActionBtns setShowProductModal={setShowProductModal} setShowCategoryModal={setShowCategoryModal} />
+      <CategoryModal showModal={showCategoryModal} setShowModal={setShowCategoryModal} />
       {/* product modal and pass showModal and setShow as props */}
-      <ProductModal showModal={showModal} setShowModal={setShowModal}/>
+      <ProductModal showModal={showProductModal} setShowModal={setShowProductModal}/>
       <AdminBody/>
     </section>
   );
