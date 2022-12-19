@@ -1,5 +1,5 @@
 import React, { Fragment, useState , useEffect } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import isEmpty from "validator/lib/isEmpty";
 
 import showMsg from "./helpers/Message";
