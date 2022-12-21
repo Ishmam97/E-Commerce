@@ -6,7 +6,7 @@ function AdminBody(props) {
     const {products } = useSelector(state => state.products)
     return (
         <div className='container'>
-            <div className="row card-deck">                
+            <div>                
                     {
                         products.map((product , index) =>{
                             return(
