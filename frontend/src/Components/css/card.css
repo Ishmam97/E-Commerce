@@ -1,10 +1,11 @@
-.pImg{
-    height: auto;
-    max-height: 15rem;
-    max-width: 100%;
+img{
+    width: 98.5%;
+    overflow: hidden;
+    object-fit: fill;
 }
 .card{
-    height: 35rem;
+    height: 25rem;
+    width: 20rem;
     overflow:hidden;
     display: flex;
     flex-flow: row wrap;
