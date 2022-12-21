@@ -4,3 +4,19 @@
     height: 25rem;
     padding: 2px;
 }
+img{
+    width: 98.5%;
+    overflow: hidden;
+    object-fit: fill;
+}
+.item .imgbox{
+    
+    width: 20rem;
+    overflow: hidden;
+}
+.item .details{
+    width: 20rem;
+}
+.item .details .content{
+    width: 20rem;
+}
