@@ -1,7 +1,11 @@
 import React, { Fragment } from "react";
 import "./css/navbar.css";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { isAuthenticated, logout } from "./helpers/auth";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 function Navigation({ history }) {
   const handleLogout = (evt) => {
     logout(() => {
@@ -33,11 +37,7 @@ function Navigation({ history }) {
         >
           <ul className="navbar-nav w-100 mr-auto text-center">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                {" "}
-                <i className="fas fa-home"></i> Home
-                <span className="sr-only">(current)</span>
-              </Link>
+              <Link className="nav-link" to="/"><span>Home</span></Link>
             </li>
             <li className="nav-item dropdown">
               <Link
@@ -65,7 +65,7 @@ function Navigation({ history }) {
               </div>
             </li>
             <li className="nav-item mx-auto search">
-              <form className="form-inline my-2 my-lg-0">
+              <form className="d-flex gap-2">
                 <input
                   className="form-control mr-sm-3 w-75 searchinput"
                   type="search"
@@ -76,32 +76,17 @@ function Navigation({ history }) {
                   className="btn btn-outline-success my-2 my-sm-0"
                   type="submit"
                 >
-                  Search
+                  <FontAwesomeIcon icon={faSearch} />
                 </button>
               </form>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/featured">
-                <i class="fas fa-star"> Featured </i>
-                <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/cart">
-                <i class="fas fa-shopping-cart"></i> Cart
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                <i class="fas fa-globe"></i> About us
-              </Link>
+              <Link className="nav-link" to="/cart">Cart</Link>
             </li>
             {!isAuthenticated() && (
               <Fragment>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/signin">
-                    <i class="fas fa-sign-in-alt"></i> Sign in
-                  </Link>
+                  <Link className="nav-link" to="/signin">Sign in</Link>
                 </li>
               </Fragment>
             )}
@@ -143,5 +128,13 @@ function Navigation({ history }) {
     </div>
   );
 }
+
+const withRouter = (Component) => {
+  const Wrapper = (props) => {
+    const history = useNavigate();
+    return <Component history={history} {...props} />;
+  };
+  return Wrapper;
+};
 
 export default withRouter(Navigation);

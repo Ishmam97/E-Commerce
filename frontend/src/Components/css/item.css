@@ -1,142 +1,22 @@
-.pCard {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    background: #d1fdff;
-    border-radius:  30px 30px 30px 30px;
+.item{
+    border: 1px solid black;
+    width: 20rem;
+    height: 25rem;
+    padding: 2px;
+}
+img{
+    width: 98.5%;
+    overflow: hidden;
+    object-fit: fill;
+}
+.item .imgbox{
+    
+    width: 20rem;
     overflow: hidden;
 }
-
-.pCard::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #683ed3;
-    transform: skewY(295deg);
-    transition: 0.5s;
-    
+.item .details{
+    width: 20rem;
 }
-
-.pCard:hover::before {
-    transform: skewY(65deg);
+.item .details .content{
+    width: 20rem;
 }
-
-.pCard::after {
-    position: absolute;
-    bottom: 0;
-    top: 0;
-}
-
-.pCard .imgbox {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 20px;
-    z-index: 1;
-}
-.pCard .imgbox img {
-    height: auto;
-    min-height: 175px;
-    max-height: 200px;
-    max-width: 100%;
-    transition: 0.5s;
-}
-.pCard:hover .imgbox img {
-    max-width: 50%;
-
-}
-.pCard .cardBody {
-    position: relative;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1;
-}
-.pCard .cardBody h3 {
-    font-size: 18px;
-    color: #000;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-
-}
-
-.pCard .cardBody .price {
-    font-size: 24px;
-    color: #000;
-    font-weight: 500;
-    letter-spacing: 1px;
-
-}
-
-.pCard .cardBody .cart {
-    position: relative;
-    top: 200px;
-    padding: 10px 15px;
-    margin-top: 15px;
-    color: #000;
-    text-decoration: none;
-    border: 3px solid #ddd4f5;
-    background: #9a7fe2;
-    border-radius: 30px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.5s;
-    
-
-}
-
-.pCard .cardBody .heart {
-    position: relative;
-    right: 100px;
-    bottom: 40px;
-    transition: 0.25s;
-    border: 0;
-    
-}
-
-
-
-.pCard:hover .cardBody .cart{
-    top: 0;
-    opacity: 1;
-}
-
-.counterBlock{
-    position: relative;
-    display:flex;
-    visibility: hidden;
-    
-    
-    
-
-}
-
-#plus {
-    width: 50px;
-    border-radius: 0px 20px 20px 0;
-    background: #9a7fe2;
-    border: 3px solid #ddd4f5;
-    
-}
-#minus {
-    width: 50px;
-    border-radius: 20px 0 0 20px;
-    background: #9a7fe2;
-    border: 3px solid #ddd4f5;
-    
-}
-
-#number {
-    position:  relative;
-    top: 6px;
-    padding: 0px 20px;
-}
-
-/* Animation */
-

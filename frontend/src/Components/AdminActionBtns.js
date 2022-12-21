@@ -1,5 +1,7 @@
 import React from 'react'
-const showActionBtns = () => {
+const showActionBtns = (props) => {
+    //receive setShowModal from AdminDash
+    const {setShowProductModal, setShowCategoryModal} = props
     return (
       <div className="bg-light py-3">
         <div className="container border border-warning my-2">
@@ -7,8 +9,7 @@ const showActionBtns = () => {
             <div className="col-md-4 py-3 my-2 ">
               <button
                 className="btn-outline-danger btn-block p-3"
-                data-toggle="modal"
-                data-target="#addProductModal"
+                onClick={() => setShowProductModal(true)}
               >
                 <i className="fas fa-plus mr-1"> </i>
                 <i className="fa fa-shopping-cart mr-1"> </i>
@@ -18,8 +19,7 @@ const showActionBtns = () => {
             <div className="col-md-4 py-3 my-2 ">
               <button
                 className="btn-outline-success btn-block p-3 "
-                data-toggle="modal"
-                data-target="#addCategoryModal"
+                onClick={() => setShowCategoryModal(true)}
               >
                 <i className="fas fa-plus mr-1"> </i>
                 <i className="fa fa-list-alt mr-1"> </i>

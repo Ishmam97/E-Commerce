@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
@@ -50,17 +50,17 @@ const Signin = () => {
     });
   };
 
-  let hist = useHistory();
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated && isAuthenticated().role === 1) {
       console.log("redirect to admin dash");
-      hist.push("/admin/dash");
+      navigate("/admin/dash");
     } else if (isAuthenticated && isAuthenticated().role === 0) {
       console.log("redirect to user");
-      hist.push("/user/dash");
+      navigate("/user/dash");
     }
-  }, [hist]);
+  }, [navigate]);
 
   const signinSubmit = (evt) => {
     evt.preventDefault();
@@ -90,10 +90,10 @@ const Signin = () => {
           setAuthentication(response.data.token, response.data.user);
           if (isAuthenticated && isAuthenticated().role === 1) {
             console.log("redirect to admin dash");
-            hist.push("/admin/dash");
+            navigate("/admin/dash");
           } else {
             console.log("redirect to user");
-            hist.push("/user/dash");
+            navigate("/user/dash");
           }
         })
         .catch((err) => {
@@ -105,9 +105,6 @@ const Signin = () => {
           });
         });
     }
-
-    console.log(formData);
-    console.log("from signin");
   };
   const signupSubmit = (evt) => {
     evt.preventDefault();

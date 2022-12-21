@@ -1,5 +1,5 @@
 import React, { Fragment, useState , useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import isEmpty from "validator/lib/isEmpty";
 
 import showMsg from "./helpers/Message";
@@ -11,7 +11,7 @@ import { editProduct } from "../Redux/actions/productActions";
 import {getCategories} from '../Redux/actions/categoryActions'
 import {getProducts} from '../Redux/actions/productActions'
 
-const AdminEditProduct = ({ match , history}) => {
+const AdminEditProduct = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
@@ -20,7 +20,7 @@ const AdminEditProduct = ({ match , history}) => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const pId = match.params.pId;
+  const { pId } = useParams();
 
   const { successMsg, errorMsg } = useSelector((state) => state.messages);
   const { loading } = useSelector((state) => state.loading);
@@ -83,7 +83,7 @@ const AdminEditProduct = ({ match , history}) => {
       if (formData){
         await dispatch(editProduct(pId , formData));
         setTimeout(()=>{
-          history.push('/admin/dash')
+          window.location.href = "/admin/dash";
         },500)
         
       }
@@ -114,7 +114,7 @@ const AdminEditProduct = ({ match , history}) => {
               <div className="modal-content">
                 <form className="p-3">
                   <div className="modal-header bg-danger text-white">
-                    <h5>Edit Product {pId}</h5>
+                    <h5>Edit Product</h5>
                   </div>
                   <div className="modal-body my-2">
                     {cErrorMsg && showMsg(cErrorMsg, 0)}
@@ -171,9 +171,7 @@ const AdminEditProduct = ({ match , history}) => {
                               id="pCat"
                               onChange={handleProductChange}
                             >
-                              <option selected value="">
-                                Choose one..
-                              </option>
+                              <option value="">Choose category</option>
                               {/**Load Categories from database and populate options with categories**/}
                               {categories &&
                                 categories.map((c) => {
