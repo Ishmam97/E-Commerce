@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  backend:
+    image: e-commerce-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - e-commerce-network
+
+  frontend:
+    image: e-commerce-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/src/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - e-commerce-network
+
+networks:
+  e-commerce-network:
+    driver: bridge
