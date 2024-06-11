@@ -5,6 +5,7 @@ module.exports = function(app) {
     '/api/*',
     createProxyMiddleware({
       target: 'http://e-commerce-backend-1:9001',
+      // target: 'http://localhost:9001',
       changeOrigin: true,
       secure:false,
     })

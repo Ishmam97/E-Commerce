@@ -23,7 +23,7 @@ function Card({ id, img, name, price, qt, cat, desc }) {
       <p className="text-truncate text-center">
         {desc}
       </p>
-      <span className="text-center">${price}</span>
+      <span className="text-center">{price}</span>
       <div className="buttons">
         <Link to={`/admin/edit/product/${id}`}>
           <button className="btn btn-success btn-md m-1">
