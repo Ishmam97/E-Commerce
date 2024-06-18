@@ -1,140 +1,79 @@
-import React, { Fragment } from "react";
-import "./css/navbar.css";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { faStore, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router";
 import { isAuthenticated, logout } from "./helpers/auth";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { LinkContainer } from 'react-router-bootstrap';
+import './css/navbar.css';
 
 function Navigation({ history }) {
+  const navigate = useNavigate();
+
   const handleLogout = (evt) => {
     logout(() => {
       console.log("Logged OUT");
-      history.push("/signin");
+      navigate("/signin");
     });
   };
-  return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark " id="navbar">
-        <Link className="navbar-brand mx-5 text-danger" to="/">
-          Navbar
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
 
-        <div
-          className="collapse navbar-collapse navlist"
-          id="navbarSupportedContent"
-        >
-          <ul className="navbar-nav w-100 mr-auto text-center">
-            <li className="nav-item">
-              <Link className="nav-link" to="/"><span>Home</span></Link>
-            </li>
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="fa fa-list-alt" aria-hidden="true"></i> Categories
-              </Link>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="#">
-                  cat1
-                </Link>
-                <Link className="dropdown-item" to="#">
-                  cat2
-                </Link>
-                {/* <div className="dropdown-divider"></div> */}
-                <Link className="dropdown-item" to="#">
-                  cat3
-                </Link>
-              </div>
-            </li>
-            <li className="nav-item mx-auto search">
-              <form className="d-flex gap-2">
-                <input
-                  className="form-control mr-sm-3 w-75 searchinput"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button
-                  className="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"
-                >
-                  <FontAwesomeIcon icon={faSearch} />
-                </button>
-              </form>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/cart">Cart</Link>
-            </li>
+  return (
+    <Navbar bg="dark" expand="lg" variant="dark">
+      <Container>
+        <Navbar.Brand href="/">
+          <span className="brand-name">
+            <FontAwesomeIcon icon={faStore} /> C L O
+          </span>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <NavDropdown title="Categories" id="basic-nav-dropdown">
+              <LinkContainer to="/category1">
+                <NavDropdown.Item>Category 1</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/category2">
+                <NavDropdown.Item>Category 2</NavDropdown.Item>
+              </LinkContainer>
+              <NavDropdown.Divider />
+              <LinkContainer to="/all-categories">
+                <NavDropdown.Item>All Categories</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown>
+            <LinkContainer to="/cart">
+              <Nav.Link>Cart</Nav.Link>
+            </LinkContainer>
+          </Nav>
+          <Nav>
             {!isAuthenticated() && (
-              <Fragment>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signin">Sign in</Link>
-                </li>
-              </Fragment>
+              <LinkContainer to="/signin">
+                <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
             )}
             {isAuthenticated() && isAuthenticated().role === 0 && (
-              <Fragment>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/user/dash">
-                    Dashboard
-                  </Link>
-                </li>
-              </Fragment>
+              <LinkContainer to="/user/dash">
+                <Nav.Link>Dashboard</Nav.Link>
+              </LinkContainer>
             )}
             {isAuthenticated() && isAuthenticated().role === 1 && (
-              <Fragment>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/admin/dash">
-                    Admin Dashboard
-                  </Link>
-                </li>
-              </Fragment>
+              <LinkContainer to="/admin/dash">
+                <Nav.Link>Dashboard</Nav.Link>
+              </LinkContainer>
             )}
-          </ul>
-          {isAuthenticated() && (
-            <div>
-              <h5 className="text-white text-center">
-                Hello {isAuthenticated().uName}
-              </h5>
-              <Link
-                className="d-block text-white text-center"
-                to="#"
-                onClick={handleLogout}
-              >
-                Logout
-              </Link>
-            </div>
-          )}
-        </div>
-      </nav>
-    </div>
+            {isAuthenticated() && (
+              <NavDropdown title={<FontAwesomeIcon icon={faUser} />} id="user-nav-dropdown">
+                <NavDropdown.Item>Hello {isAuthenticated().uName}</NavDropdown.Item>
+                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
-const withRouter = (Component) => {
-  const Wrapper = (props) => {
-    const history = useNavigate();
-    return <Component history={history} {...props} />;
-  };
-  return Wrapper;
-};
-
-export default withRouter(Navigation);
+export default Navigation;
