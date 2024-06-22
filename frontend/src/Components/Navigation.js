@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
-import { faStore, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faStore, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated, logout } from "./helpers/auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +18,7 @@ function Navigation() {
   };
 
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar bg="dark" expand="lg" variant="dark" id="parent">
       <Container>
         <Navbar.Brand href="/">
           <span className="brand-name">
@@ -43,11 +43,12 @@ function Navigation() {
                 <NavDropdown.Item>All Categories</NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
-            <LinkContainer to="/cart">
-              <Nav.Link>Cart</Nav.Link>
-            </LinkContainer>
           </Nav>
           <Nav>
+            <LinkContainer to="/cart">
+                <Nav.Link> <FontAwesomeIcon icon={faShoppingCart}/> Cart</Nav.Link>
+            </LinkContainer>
+
             {!isAuthenticated() && (
               <LinkContainer to="/signin">
                 <Nav.Link>Login</Nav.Link>
