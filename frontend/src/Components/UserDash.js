@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserDash = ()=>{
     return(
-        <div>Hello from user dashboard</div>
+        <div>Hello </div>
     )
 }
 export default UserDash;
