@@ -6,6 +6,7 @@ import Home from './Components/Home'
 import Signin from './Components/Signin'
 import NotFound from './Components/NotFound'
 import UserDash from './Components/UserDash'
+import LandingPage from './Components/LandingPage';
 import AdminDash from './Components/AdminDash'
 import AdminEditProduct from './Components/AdminEditProduct'
 import AdminRoute from './Components/AdminRoute'
@@ -30,7 +31,7 @@ const App = ()=>{
       <main>
         <Routes>
           {/*react routing*/}
-          <Route exact path='/' element={<Home/>}/>
+          <Route exact path='/' element={<LandingPage/>}/>
           <Route exact path='/signin' element={<Signin/>}/>
           <Route exact path='/user/dash' element={<UserRoute/>}>
             <Route exact path='/user/dash' element={<UserDash/>}/>

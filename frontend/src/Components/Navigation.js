@@ -22,7 +22,7 @@ function Navigation() {
       <Container>
         <Navbar.Brand href="/">
           <span className="brand-name">
-            <FontAwesomeIcon icon={faStore} /> C L O
+            <FontAwesomeIcon icon={faStore} /> S H O P
           </span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
