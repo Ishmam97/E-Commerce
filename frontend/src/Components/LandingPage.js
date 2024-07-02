@@ -9,30 +9,34 @@ import {
   FormControl,
 } from "react-bootstrap";
 import "./css/landingPage.css";
+
+import { Link } from "react-router-dom";
+
 const LandingPage = () => {
-  const SHOES = [
-    {
-      id: "shoe1",
-      title: "Casual Shoes",
-      image: `${process.env.PUBLIC_URL}/shoe1.jpeg`,
-      text: "Comfortable and stylish, perfect for everyday wear.",
-      buttonLabel: "Discover More",
-    },
-    {
-      id: "shoe2",
-      title: "Sports Shoes",
-      image: `${process.env.PUBLIC_URL}/shoe2.jpg`,
-      text: "Designed for performance and comfort.",
-      buttonLabel: "Discover More",
-    },
-    {
-      id: "shoe3",
-      title: "Formal Shoes",
-      image: `${process.env.PUBLIC_URL}/shoe3.jpg`,
-      text: "Elegant and stylish, perfect for formal occasions.",
-      buttonLabel: "Discover More",
-    },
-  ];
+    const SHOES = [
+        {
+            id: "shoe1",
+            title: "Casual Shoes",
+            image: `${process.env.PUBLIC_URL}/shoe1.jpeg`,
+            text: "Comfortable and stylish, perfect for everyday wear.",
+            buttonLabel: "Discover More",
+        },
+        {
+            id: "shoe2",
+            title: "Sports Shoes",
+            image: `${process.env.PUBLIC_URL}/shoe2.jpg`,
+            text: "Designed for performance and comfort.",
+            buttonLabel: "Discover More",
+        },
+        {
+            id: "shoe3",
+            title: "Formal Shoes",
+            image: `${process.env.PUBLIC_URL}/shoe3.jpg`,
+            text: "Elegant and stylish, perfect for formal occasions.",
+            buttonLabel: "Discover More",
+        },
+    ];
+
 
   return (
     <div>
@@ -50,9 +54,7 @@ const LandingPage = () => {
             <h1 className="mt-3 font-weight-bold">
               Discover the perfect blend of comfort and style
             </h1>
-            <Button variant="light" className="my-3">
-              Shop Now
-            </Button>
+          <Link to="/product" className="btn btn-light my-3">Shop Now</Link>
           </Col>
         </Row>
       </Container>
