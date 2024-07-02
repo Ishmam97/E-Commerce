@@ -59,12 +59,12 @@ function Navigation() {
               <NavDropdown title={<span><FontAwesomeIcon icon={faUser}/>  {isAuthenticated().uName}</span>} id="user-nav-dropdown">
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => {
-                  if (isAuthenticated.role === 1){
+                  // if (isAuthenticated.role === 1){
                     navigate("/admin/dash")
-                  }
-                  else{
-                    navigate("/user/dash")
-                  }
+                  // }
+                  // else{
+                  //   navigate("/user/dash")
+                  // }
                 }}>Dashboard</NavDropdown.Item>
               </NavDropdown>
             )}

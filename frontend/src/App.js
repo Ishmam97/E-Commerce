@@ -1,8 +1,7 @@
 import './App.css';
 import React, { useEffect } from 'react';
-
+import Product from './Components/Product';
 import Navigation from './Components/Navigation';
-import Home from './Components/Home'
 import Signin from './Components/Signin'
 import NotFound from './Components/NotFound'
 import UserDash from './Components/UserDash'
@@ -32,6 +31,7 @@ const App = ()=>{
         <Routes>
           {/*react routing*/}
           <Route exact path='/' element={<LandingPage/>}/>
+          <Route exact path='/product' element={<Product/>}/>
           <Route exact path='/signin' element={<Signin/>}/>
           <Route exact path='/user/dash' element={<UserRoute/>}>
             <Route exact path='/user/dash' element={<UserDash/>}/>
