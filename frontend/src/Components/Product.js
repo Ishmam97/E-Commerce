@@ -17,7 +17,7 @@ const Product = () => {
 
     if (filters.category) {
       filtered = filtered.filter(
-        (product) => product.pCat.category.toLowerCase() === filters.category.toLowerCase()
+        (product) => product.pCat && product.pCat.category && product.pCat.category.toLowerCase() === filters.category.toLowerCase()
       );
     }
 

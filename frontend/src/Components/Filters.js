@@ -34,11 +34,10 @@ const Filter = ({ onFilterChange }) => {
         <label htmlFor="category">Category</label>
         <select name="category" id="category" onChange={handleCategoryChange}>
           <option value="">All</option>
-          <option value="Shoes">Shoes</option>
           <option value="Basketball">Basketball</option>
+          <option value="Casual">Casual</option>
           <option value="Formal">Formal</option>
           <option value="Running">Running</option>
-          <option value="Casual">Casual</option>
           {/* Add more categories as needed */}
         </select>
       </div>
